@@ -40,13 +40,14 @@
       "tipo": "alcoólica",
       "preco_unidade": 5,
       "consumo_medio_adulto_ml": 500,
-      "consumo_medio_crianca_ml": 0
+      "consumo_medio_crianca_ml": 0,
+      "proibido_menores": true
     },
     {
       "id": "2",
       "nome": "refrigerante",
       "tipo": "não alcoólica",
-      "preco_lata": 3,
+      "preco_unidade": 3,
       "consumo_medio_adulto_ml": 300,
       "consumo_medio_crianca_ml": 200
     },
@@ -54,7 +55,7 @@
       "id": "3",
       "nome": "água",
       "tipo": "não alcoólica",
-      "preco_garrafa": 2,
+      "preco_unidade": 2,
       "consumo_medio_adulto_ml": 500,
       "consumo_medio_crianca_ml": 300
     },
@@ -62,7 +63,7 @@
       "id": "4",
       "nome": "suco",
       "tipo": "não alcoólica",
-      "preco_litro": 6,
+      "preco_unidade": 6,
       "consumo_medio_adulto_ml": 500,
       "consumo_medio_crianca_ml": 300
     }

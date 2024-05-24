@@ -9,7 +9,7 @@ export class ScrollService {
     
   }
 
-  scrollToTop(id: string) {
+  scrollToSection(id: string) {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
