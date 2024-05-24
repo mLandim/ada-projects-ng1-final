@@ -149,7 +149,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let carne of resumo.carnes">
-                    <td class="py-2 px-4 border-b text-left">{{ carne.item }}</td>
+                    <td class="py-2 px-4 border-b text-left" style="text-transform: capitalize;">{{ carne.item }}</td>
                     <td class="py-2 px-4 border-b text-left">{{ carne.consumoMedio }} g</td>
                     <td class="py-2 px-4 border-b text-left">{{ carne.valorTotal | currency: 'BRL' }}</td>
                 </tr>
@@ -174,7 +174,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let bebida of resumo.bebidas">
-                    <td class="py-2 px-4 border-b text-left">{{ bebida.item }}</td>
+                    <td class="py-2 px-4 border-b text-left" style="text-transform: capitalize;">{{ bebida.item }}</td>
                     <td class="py-2 px-4 border-b text-left">{{ bebida.consumoMedio }} ml</td>
                     <td class="py-2 px-4 border-b text-left">{{ bebida.valorTotal | currency: 'BRL' }}</td>
                 </tr>
