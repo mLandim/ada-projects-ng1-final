@@ -1,25 +1,19 @@
-<section id="section-start">
+<section id="section-start" class="p-10">
     <div class="text-center">
       <h1 class="my-6">{{ welcomeMessage }}</h1>
-      <button mat-raised-button color="primary" class="button-start">
+      <button mat-raised-button color="primary" class="button-start" (click)="scrollToSection('form-container')">
         Vamos começar!
       </button>
     </div>
 </section>
 
-<section id="section-form" class="bg-red-300 min-h[calc(100vh-400px)] p-10">
+<section id="section-form" class="bg-slate-300 min-h[calc(100vh-400px)] p-10">
     <app-preco-formulario></app-preco-formulario>
-
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi excepturi neque reprehenderit suscipit labore laborum fuga architecto a assumenda, veritatis consequatur minus. Inventore quae itaque aliquam. Officia cumque at dolore?</p>
-
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis exercitationem laborum adipisci incidunt ex tempora, inventore asperiores dolorum veniam sequi totam, fugiat eos officia excepturi blanditiis deleniti fuga porro rerum?</p>
-
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit aut dolorem, veritatis, atque veniam reprehenderit illum mollitia earum quae, reiciendis debitis similique ipsum dolorum molestias? Consequuntur itaque molestias quis eos!</p>
-    
+       
 </section>
 
 <section id="section-end">
     <div class="flex justify-end">
-        <button mat-flat-button (click)="scrollToTop('section-start')" >Rolar para o topo</button>
+        <button mat-flat-button (click)="scrollToSection('section-start')" >Rolar para o topo</button>
     </div>
 </section>

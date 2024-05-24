@@ -1,1 +1,193 @@
-<p>Preço selecionado: {{ precoSelecionado }}</p>
+
+<div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Valores de referência das Carnes e Bebidas</h1>
+
+    <div class="grid grid-cols-2 gap-4">
+        <div>
+            <div class="bg-white shadow-md rounded p-4 mb-4" *ngFor="let carne of carnesShow | keyvalue">
+                <h2 class="text-xl font-semibold mb-2" style="text-transform: capitalize;">{{carne.value.nome}}</h2>
+                <p >Preço por kg: {{ carne.value.preco | currency: 'BRL' }}</p>
+                <p>Consumo médio por adulto (g): {{ carne.value.consumoMedioAdulto }}</p>
+                <p>Consumo médio por criança (g): {{ carne.value.consumoMedioCrianca }}</p>
+            </div>
+        </div>
+        <div>
+            <div class="bg-white shadow-md rounded p-4 mb-4" *ngFor="let bebida of bebidasShow | keyvalue">
+                <h2 class="text-xl font-semibold mb-2" style="text-transform: capitalize;">{{bebida.value.nome}}</h2>
+                <p>Preço por Unidade: {{ bebida.value.preco | currency: 'BRL' }}</p>
+                <p>Consumo médio por adulto (ml): {{ bebida.value.consumoMedioAdulto }}</p>
+                <p>Consumo médio por criança (ml): {{ bebida.value.consumoMedioCrianca ?? '🚫' }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<section id="form-container" class="container mx-auto p-4">
+
+    <h1 class="text-2xl font-bold mb-4">Informar Dados do Churrasco</h1>
+    <!-- reactive form  -->
+    <div class="rounded overflow-hidden shadow-lg p-10 mb-8 bg-white mx-auto">
+        
+        <mat-stepper orientation="vertical" [linear]="true" #stepper >
+            
+            <mat-step [stepControl]="formPessoas">
+                
+                <form [formGroup]="formPessoas" class="flex flex-col">
+                    
+                    <ng-template matStepLabel>Quantas pessoas?</ng-template>
+                    
+                    <mat-form-field class="block">
+                        <mat-label>Quantidade de Adultos</mat-label>
+                        <input matInput type="number" name="adultos" formControlName="adultos" placeholder="Quantos adultos?">
+                    </mat-form-field>
+
+                    <mat-form-field class="block">
+                        <mat-label>Quantidade de Crianças</mat-label>
+                        <input matInput type="number" name="criancas" formControlName="criancas" placeholder="Quantos crianças?">
+                    </mat-form-field>
+
+                    <mat-error class="mt-2" *ngIf="formPessoas.get('adultos')?.hasError('min')">Pelo menos um adulto é obrigatório</mat-error>
+                    <mat-error class="mt-2" *ngIf="formPessoas.get('adultos')?.value < 0 || formPessoas.get('criancas')?.value < 0">Não é permitido usar valores negativos</mat-error>
+                
+                    <div class="flex justify-end mt-2">
+                        <button mat-flat-button color="primary" 
+                        [disabled]="formPessoas.invalid || formPessoas.get('adultos')?.value < 1 || formPessoas.get('criancas')?.value < 0" 
+                        matStepperNext>Avançar</button>
+                    </div>
+                
+                </form>
+
+            </mat-step>
+
+            <mat-step [stepControl]="formCarnes">
+                
+                <form [formGroup]="formCarnes" class="flex flex-col">
+
+                    <ng-template matStepLabel>Opções de Carnes</ng-template>
+
+                    <ng-container *ngFor="let carne of carnesOpcoes">
+                        <mat-checkbox [formControlName]="carne.key" >{{carne.value}}</mat-checkbox>
+                    </ng-container>
+
+                    <mat-error class="mt-2" *ngIf="carnesValidationDisable">Selecione pelo menos uma opção</mat-error>
+                    
+                    <div class="flex justify-end mt-2">
+                        <button mat-flat-button color="primary" [disabled]="carnesValidationDisable" matStepperNext>Avançar</button>
+                    </div>
+
+                </form>
+
+            </mat-step>
+
+            <mat-step [stepControl]="formBebidas">
+
+                <form [formGroup]="formBebidas" class="flex flex-col">
+
+                    <ng-template matStepLabel>Opções de Bebidas</ng-template>
+
+                    <ng-container *ngFor="let bebida of bebidasOpcoes">
+                        <mat-checkbox [formControlName]="bebida.key">{{bebida.value}}</mat-checkbox>
+                    </ng-container>
+
+                    <mat-error class="mt-2" *ngIf="bebidasValidationDisable">Selecione pelo menos uma opção</mat-error>
+                    
+                    <div class="flex justify-end mt-2">
+                        <button mat-flat-button color="primary" [disabled]="(bebidasValidationDisable || carnesValidationDisable)" (click)="submit()" >Calcular</button>
+                    </div>
+
+                </form>
+
+            </mat-step>
+
+            
+            <mat-error class="mt-2" *ngIf="formErrorMessage">{{ formErrorMessage }}</mat-error>
+            
+        </mat-stepper>
+
+    </div>
+
+</section>
+
+<section id="result" class="container mx-auto p-4">
+    
+    <div *ngIf="exibirLoading" class="flex justify-center">
+        <mat-spinner color="accent" diameter="70"></mat-spinner>
+    </div>
+
+    <div *ngIf="exibirResultados">
+        <h1 class="text-2xl font-bold mb-4">Valores Finais para o Churrasco</h1>
+
+        <h2 class="text-xl font-bold mb-4">Pessoas</h2>
+        <table class="min-w-full bg-white table-fixed">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b text-left">Descrição</th>
+                    <th class="py-2 px-4 border-b text-left">Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="py-2 px-4 border-b text-left">Adultos</td>
+                    <td class="py-2 px-4 border-b text-left">{{ resumo.adultos }}</td>
+                </tr>
+                <tr>
+                    <td class="py-2 px-4 border-b text-left">Crianças</td>
+                    <td class="py-2 px-4 border-b text-left">{{ resumo.criancas }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="text-xl font-bold mb-4 mt-4">Carnes</h2>
+        <table class="min-w-full bg-white table-fixed">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b text-left">Descrição</th>
+                    <th class="py-2 px-4 border-b text-left">Consumo Médio</th>
+                    <th class="py-2 px-4 border-b text-left">Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let carne of resumo.carnes">
+                    <td class="py-2 px-4 border-b text-left">{{ carne.item }}</td>
+                    <td class="py-2 px-4 border-b text-left">{{ carne.consumoMedio }} g</td>
+                    <td class="py-2 px-4 border-b text-left">{{ carne.valorTotal | currency: 'BRL' }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="py-2 px-4 border-b text-left">Total Carnes</th>
+                    <th class="py-2 px-4 border-b text-left">-</th>
+                    <th class="py-2 px-4 border-b text-left">{{ carnessTotal | currency: 'BRL' }}</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <h2 class="text-xl font-bold mb-4 mt-4">Bebidas</h2>
+        <table class="min-w-full bg-white table-fixed">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b text-left">Descrição</th>
+                    <th class="py-2 px-4 border-b text-left">Consumo Médio</th>
+                    <th class="py-2 px-4 border-b text-left">Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bebida of resumo.bebidas">
+                    <td class="py-2 px-4 border-b text-left">{{ bebida.item }}</td>
+                    <td class="py-2 px-4 border-b text-left">{{ bebida.consumoMedio }} ml</td>
+                    <td class="py-2 px-4 border-b text-left">{{ bebida.valorTotal | currency: 'BRL' }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="py-2 px-4 border-b text-left">Total Bebidas</th>
+                    <th class="py-2 px-4 border-b text-left">-</th>
+                    <th class="py-2 px-4 border-b text-left">{{ bebidasTotal | currency: 'BRL' }}</th>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+
+</section>

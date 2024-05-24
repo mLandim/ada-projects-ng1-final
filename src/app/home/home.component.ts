@@ -18,9 +18,8 @@ export class HomeComponent {
 
   }
 
-  scrollToTop(id: string): void {
-    console.log('Scroll To Top')
-    this.scrollService.scrollToTop(id)
+  scrollToSection(id: string): void {
+    this.scrollService.scrollToSection(id)
   }
 
 }
