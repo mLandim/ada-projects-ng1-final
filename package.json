@@ -1,12 +1,13 @@
 {
-  "name": "projeto-1",
+  "name": "projeto-ada-ng-1",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "api": "json-server -w ./src/api/churrascometro.json"
   },
   "private": true,
   "dependencies": {
