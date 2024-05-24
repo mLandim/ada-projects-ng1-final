@@ -188,6 +188,21 @@
             </tfoot>
         </table>
 
+        <h2 class="text-xl font-bold mb-4 mt-4">Total</h2>
+        <table class="min-w-full bg-white table-fixed">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b text-left">Descrição</th>
+                    <th class="py-2 px-4 border-b text-left">Valor</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th class="py-2 px-4 border-b text-left">Valor Total do Churrasco</th>
+                    <th class="py-2 px-4 border-b text-left">{{ (carnessTotal + bebidasTotal) | currency: 'BRL' }}</th>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 
 </section>
