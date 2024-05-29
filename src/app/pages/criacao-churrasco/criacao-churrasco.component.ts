@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChurrascometroService } from '../shared/services/churrascometro.service';
+import { ChurrascometroService } from '../../shared/services/churrascometro.service';
 import { map } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,13 +33,13 @@ interface Resumo {
 }
 
 @Component({
-  selector: 'app-preco-formulario',
+  selector: 'app-criacao-churrasco',
   standalone: true,
   imports: [CommonModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, MatStepperModule],
-  templateUrl: './preco-formulario.component.html',
-  styleUrl: './preco-formulario.component.scss'
+  templateUrl: './criacao-churrasco.component.html',
+  styleUrl: './criacao-churrasco.component.scss'
 })
-export class PrecoFormularioComponent implements OnInit {
+export class CriacaoChurrascoComponent implements OnInit {
 
   nome: string = ""
 

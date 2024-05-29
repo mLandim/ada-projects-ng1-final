@@ -1,19 +1,19 @@
 <section id="section-start" class="p-10">
     <div class="text-center">
       <h1 class="my-6">{{ welcomeMessage }}</h1>
-      <button mat-raised-button color="primary" class="button-start" (click)="scrollToSection('form-container')">
+      <button mat-raised-button color="primary" class="button-start"  (click)="navigate()">
         Vamos começar!
       </button>
     </div>
 </section>
 
-<section id="section-form" class="bg-slate-300 min-h[calc(100vh-400px)] p-10">
-    <app-preco-formulario></app-preco-formulario>
+<!-- <section id="section-form" class="bg-slate-300 min-h[calc(100vh-400px)] p-10">
+    <app-criacao-churrasco></app-criacao-churrasco>
        
-</section>
+</section> -->
 
-<section id="section-end">
+<!-- <section id="section-end">
     <div class="flex justify-end">
         <button mat-flat-button (click)="scrollToSection('section-start')" >Rolar para o topo</button>
     </div>
-</section>
+</section> -->

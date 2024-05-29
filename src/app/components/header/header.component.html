@@ -5,13 +5,15 @@
           <mat-icon>menu</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>Item 1</button>
-          <button mat-menu-item>Item 2</button>
+          <button mat-menu-item [routerLink]="['/home']">Home</button>
+          <button mat-menu-item [routerLink]="['churrascos']">Lista</button>
+          <button mat-menu-item [routerLink]="['churrascos/novo']" >Novo</button>
         </mat-menu>
       </menu>
       <menu class="hidden sm:flex">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
+        <button mat-menu-item [routerLink]="['/home']">Home</button>
+        <button mat-menu-item [routerLink]="['churrascos']">Lista</button>
+        <button mat-menu-item [routerLink]="['churrascos/novo']" >Novo</button>
       </menu>
       <figure class="flex items-center gap-4 md:flex-row-reverse">
         <figcaption>Churrascometro</figcaption>

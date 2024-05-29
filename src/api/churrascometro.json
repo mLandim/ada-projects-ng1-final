@@ -31,6 +31,22 @@
       "preco_kg": 15,
       "consumo_medio_adulto_g": 200,
       "consumo_medio_crianca_g": 100
+    },
+    {
+      "id": "5",
+      "nome": "queijo",
+      "tipo": "laticínio",
+      "preco_kg": 80,
+      "consumo_medio_adulto_g": 200,
+      "consumo_medio_crianca_g": 100
+    },
+    {
+      "id": "6",
+      "nome": "abacaxi",
+      "tipo": "fruta",
+      "preco_kg": 5,
+      "consumo_medio_adulto_g": 150,
+      "consumo_medio_crianca_g": 50
     }
   ],
   "bebidas": [

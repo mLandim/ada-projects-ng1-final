@@ -1,0 +1,16 @@
+:host {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+a {
+    color: #1e40af;
+    font-weight: bold;
+}

@@ -1,29 +1,6 @@
 
-<div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Valores de referência das Carnes e Bebidas</h1>
 
-    <div class="grid grid-cols-2 gap-4">
-        <div>
-            <div class="bg-white shadow-md rounded p-4 mb-4" *ngFor="let carne of carnesShow | keyvalue">
-                <h2 class="text-xl font-semibold mb-2" style="text-transform: capitalize;">{{carne.value.nome}}</h2>
-                <p >Preço por kg: {{ carne.value.preco | currency: 'BRL' }}</p>
-                <p>Consumo médio por adulto (g): {{ carne.value.consumoMedioAdulto }}</p>
-                <p>Consumo médio por criança (g): {{ carne.value.consumoMedioCrianca }}</p>
-            </div>
-        </div>
-        <div>
-            <div class="bg-white shadow-md rounded p-4 mb-4" *ngFor="let bebida of bebidasShow | keyvalue">
-                <h2 class="text-xl font-semibold mb-2" style="text-transform: capitalize;">{{bebida.value.nome}}</h2>
-                <p>Preço por Unidade: {{ bebida.value.preco | currency: 'BRL' }}</p>
-                <p>Consumo médio por adulto (ml): {{ bebida.value.consumoMedioAdulto }}</p>
-                <p>Consumo médio por criança (ml): {{ bebida.value.consumoMedioCrianca ?? '🚫' }}</p>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<section id="form-container" class="container mx-auto p-4">
+<section id="form-container" class="bg-slate-300 container mx-auto p-4">
 
     <h1 class="text-2xl font-bold mb-4">Informar Dados do Churrasco</h1>
     <!-- reactive form  -->
@@ -109,7 +86,7 @@
 
 </section>
 
-<section id="result" class="container mx-auto p-4">
+<section id="result" class=" bg-slate-300 container mx-auto p-4">
     
     <div *ngIf="exibirLoading" class="flex justify-center">
         <mat-spinner color="accent" diameter="70"></mat-spinner>
@@ -206,3 +183,27 @@
     </div>
 
 </section>
+
+<div class="bg-slate-300 container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Valores de referência das Carnes e Bebidas</h1>
+
+    <div class="grid grid-cols-2 gap-4">
+        <div>
+            <div class="bg-white shadow-md rounded p-4 mb-4" *ngFor="let carne of carnesShow | keyvalue">
+                <h2 class="text-xl font-semibold mb-2" style="text-transform: capitalize;">{{carne.value.nome}}</h2>
+                <p >Preço por kg: {{ carne.value.preco | currency: 'BRL' }}</p>
+                <p>Consumo médio por adulto (g): {{ carne.value.consumoMedioAdulto }}</p>
+                <p>Consumo médio por criança (g): {{ carne.value.consumoMedioCrianca }}</p>
+            </div>
+        </div>
+        <div>
+            <div class="bg-white shadow-md rounded p-4 mb-4" *ngFor="let bebida of bebidasShow | keyvalue">
+                <h2 class="text-xl font-semibold mb-2" style="text-transform: capitalize;">{{bebida.value.nome}}</h2>
+                <p>Preço por Unidade: {{ bebida.value.preco | currency: 'BRL' }}</p>
+                <p>Consumo médio por adulto (ml): {{ bebida.value.consumoMedioAdulto }}</p>
+                <p>Consumo médio por criança (ml): {{ bebida.value.consumoMedioCrianca ?? '🚫' }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
