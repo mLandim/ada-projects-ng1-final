@@ -1,7 +1,6 @@
 import { Component, LOCALE_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 import pt from '@angular/common/locales/pt'
 import { registerLocaleData } from '@angular/common';
 
@@ -10,7 +9,7 @@ registerLocaleData(pt)
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, HomeComponent],
+  imports: [RouterOutlet, HeaderComponent],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'}
   ],
@@ -18,5 +17,5 @@ registerLocaleData(pt)
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'ada - projeto-1';
+  title = 'ada - projeto-ng-2';
 }

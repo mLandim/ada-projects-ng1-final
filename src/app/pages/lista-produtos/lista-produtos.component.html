@@ -1,0 +1,37 @@
+<div class="bg-slate-300 container my-10 mx-auto p-4 rounded">
+    <h1 class="text-2xl font-bold mb-4">Produtos</h1>
+
+    <div class="grid grid-cols-2 gap-16">
+        <div>
+            <div class="produtos-header">
+                <h2>Carnes</h2>
+                <button mat-raised-button color="primary" (click)="editar('carnes', '')">Novo</button>
+            </div>
+            
+            <div class="bg-white shadow-md rounded p-4 mb-4" *ngFor="let carne of getCarnes()">
+                <h2 class="text-xl font-semibold mb-2" style="text-transform: capitalize;">{{carne.nome | titlecase }}</h2>
+                <p>Tipo: {{ carne.tipo }}</p>
+                <p >Preço por kg: {{ carne.preco_kg| currency: 'BRL' }}</p>
+                <p>Consumo médio por adulto (g): {{ carne.consumo_medio_adulto_g }}</p>
+                <p>Consumo médio por criança (g): {{ carne.consumo_medio_crianca_g }}</p>
+                <button mat-raised-button color="primary" (click)="editar('carnes', carne.id)">Editar</button>
+            </div>
+        </div>
+        <div>
+            <div class="produtos-header">
+                <h2>Bebidas</h2>
+                <button mat-raised-button color="primary" (click)="editar('bebidas', '')">Novo</button>
+            </div>
+            <div class="bg-white shadow-md rounded p-4 mb-4" *ngFor="let bebida of getBebidas()">
+                <h2 class="text-xl font-semibold mb-2" style="text-transform: capitalize;">{{bebida.nome | titlecase}}</h2>
+                <p>Tipo: {{ bebida.tipo }}</p>
+                <p>Preço por Unidade: {{ bebida.preco_unidade| currency: 'BRL' }}</p>
+                <p>Consumo médio por adulto (ml): {{ bebida.consumo_medio_adulto_ml }}</p>
+                <p>Consumo médio por criança (ml): {{ bebida.proibido_menores ?  '🚫' : bebida.consumo_medio_crianca_ml }}</p>
+                <button mat-raised-button color="primary" (click)="editar('bebidas', bebida.id)">Editar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+

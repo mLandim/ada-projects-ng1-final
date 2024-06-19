@@ -10,11 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalheChurrascoComponent implements OnInit{
 
-  idRec!: string
+  idRec?: string
 
-  @Input() set id(id: string) {
-    this.idRec = id
-  }
+  // @Input() set id(id: string) {
+  //   this.idRec = id
+  // }
 
   constructor(private router: ActivatedRoute) {
 
@@ -22,6 +22,6 @@ export class DetalheChurrascoComponent implements OnInit{
   ngOnInit(): void {
     console.log(this.router.snapshot.params['id'])
     console.log(this.router.snapshot.paramMap.get('id'))
-    
+    this.idRec = this.router.snapshot.paramMap.get('id')?.toString()
   }
 }

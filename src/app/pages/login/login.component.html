@@ -1,0 +1,11 @@
+<section id="form-login" class="bg-slate-300 container mx-auto my-10 p-10 rounded w">
+
+    <h1>Login</h1>
+    
+    <input type="text" matInput color="primary"  placeholder="Usuário" [(ngModel)]="user" />
+    <input type="password" matInput color="primary" placeholder="Senha" [(ngModel)]="password" />
+    
+    <button mat-flat-button color="primary" (click)="login()">Entrar</button>
+
+</section>
+

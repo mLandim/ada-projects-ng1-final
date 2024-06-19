@@ -1,0 +1,18 @@
+<section id="section-start" class="p-10">
+    
+  <div class="home-opcoes-container">
+      
+      <h1 class="my-6">{{ welcomeMessage }}</h1>
+      
+      <button mat-raised-button color="primary" class="button-start"  (click)="navigate('/churrascos/novo')">
+        Criar Churrasco
+      </button>
+
+      <button *ngIf="isAdmin()" mat-raised-button color="primary" class="button-start"  (click)="navigate('/produtos')">
+        Gerenciar Lista de Produtos
+      </button>
+    
+    </div>
+
+</section>
+
