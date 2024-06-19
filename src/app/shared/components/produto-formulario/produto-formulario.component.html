@@ -1,0 +1,76 @@
+<form [formGroup]="form" class="flex flex-col m-10">
+    
+    <div class="form-header">
+        <h2 class="text-xl font-bold mb-4" >{{ idRoute ? 'Edição' : 'Criação' }} de {{ produtoRoute | titlecase }}</h2>
+        
+        <button mat-raised-button color="primary" class="button-start mb-6"  (click)="voltar()">Voltar</button>
+
+    </div>  
+    
+    @for (campo of campos; track campo.nome) {
+        
+        @if(campo.tipo == 'list') {
+
+            <mat-form-field>
+                <mat-select 
+                [formControlName]="campo.nome"
+                [placeholder]="campo.placeholder">
+            
+                @for (tipo of listaTipos; track tipo) {
+                    <mat-option [value]="tipo">{{ tipo }}</mat-option>
+                }
+            
+                </mat-select>
+            </mat-form-field>
+
+        } @else {
+
+            @if (campo.tipo == 'boolean' ) {
+            
+                <mat-form-field>
+                    <mat-select 
+                    [formControlName]="campo.nome"
+                    [placeholder]="campo.placeholder" (selectionChange)="updateCosumoCrianca($event)">
+                        <mat-option [value]="true">SIM</mat-option>
+                        <mat-option [value]="false">NÃO</mat-option>
+                    </mat-select>
+                </mat-form-field> 
+
+            } @else {
+                <mat-form-field>
+                    <input matInput [type]="campo.tipo" [formControlName]="campo.nome" [placeholder]="campo.placeholder" />
+                </mat-form-field>
+            }
+            <!-- } @else {
+
+                @if (enableSelectForbidden) {
+                    <mat-form-field>
+                        <mat-select 
+                        [formControlName]="campo.nome"
+                        [placeholder]="campo.placeholder">
+                            <mat-option [value]="true">SIM</mat-option>
+                            <mat-option [value]="false">NÃO</mat-option>
+                        </mat-select>
+                    </mat-form-field> 
+                }
+            
+            } -->
+            
+
+           
+
+        }
+
+        
+    }
+    <button mat-raised-button color="primary" class="button-start mb-6" [disabled]="!form.valid" (click)="idRoute ? editar() : criar()">
+        @if (idRoute) {
+            Editar
+        } @else {
+            Criar
+        }
+    </button>
+    @if (idRoute) {
+        <button mat-raised-button color="warn" class="button-start mb-6" (click)="deletar()">Apagar</button>
+    }
+</form>

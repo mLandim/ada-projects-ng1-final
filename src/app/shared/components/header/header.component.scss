@@ -1,0 +1,18 @@
+:host {
+    height: 80px;
+}
+
+
+.header-menu--item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-left: 24px;
+    padding: 12px;
+    border-radius: 4px;
+    &:hover {
+        background-color: #78879b;
+    }
+}

@@ -1,0 +1,42 @@
+<mat-toolbar class="h-32" id="header">
+  
+    <mat-toolbar-row class="bg-slate-400 flex justify-between !h-full !items-center bg-primary md:!flex-row-reverse">
+      
+      <menu class="block md:hidden">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [routerLink]="['/home']">Home</button>
+          <button mat-menu-item [routerLink]="['produtos']">Lista deProdutos</button>
+          <button mat-menu-item [routerLink]="['churrascos/novo']" >Novo Churrasco</button>
+
+          <button mat-menu-item *ngIf="loggedIn; else notLogged" (click)="logout()" >Sair</button>
+          <ng-template #notLogged>
+            <button mat-menu-item [routerLink]="['/login']" >Login</button>
+          </ng-template>
+
+        </mat-menu>
+      </menu>
+      
+      <menu class="hidden md:flex">
+        <a class="header-menu--item" [routerLink]="['/home']">Home</a>
+        <a class="header-menu--item" [routerLink]="['produtos']">Lista de Produtos</a>
+        <a class="header-menu--item" [routerLink]="['churrascos/novo']" >Novo Churrasco</a>
+
+        <a class="header-menu--item" *ngIf="loggedIn; else notLogged" (click)="logout()">Sair</a>
+        <ng-template #notLogged>
+          <a class="header-menu--item" [routerLink]="['/login']" >Login</a>
+        </ng-template>
+        
+      </menu>
+
+      <figure class="flex items-center gap-4 md:flex-row-reverse">
+        <figcaption>Churrascometro</figcaption>
+        <img src="../../../assets/logo.jpg" class="size-16 rounded-2xl" alt="barbecue logo" />
+      </figure>
+
+    </mat-toolbar-row>
+
+  </mat-toolbar>
+  
